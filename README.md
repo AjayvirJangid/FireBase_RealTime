@@ -35,12 +35,6 @@ This project can be reused as a **template** for any multiplayer or single-playe
 
 ---
 
-## 🖼️ Preview
-*(Add screenshots here – e.g., Blueprint nodes, leaderboard widget in-game UI)*  
 
 ---
 
-## ⚡ Setup
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/AjayvirJangid/FireBase_RealTime.git
