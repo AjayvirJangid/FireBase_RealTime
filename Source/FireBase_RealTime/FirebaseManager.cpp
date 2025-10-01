@@ -19,7 +19,7 @@ AFirebaseManager::AFirebaseManager()
 	
 	// Randomize each time game runs
 	PlayerName = GenerateRandomPlayerName();
-	FirebaseURL = "https://realtime-database-a19df-default-rtdb.firebaseio.com/";
+	FirebaseURL = " "; // place your firebase URL and its work
 
 }
 
@@ -73,7 +73,7 @@ void AFirebaseManager::Tick(float DeltaTime)
 
 }
 
-void AFirebaseManager::IncreaseScore()
+void AFirebaseManager::IncreaseScore(const FString& PlayerID, int32 Amount)
 {
 	Score += 10;
 
@@ -84,15 +84,15 @@ void AFirebaseManager::IncreaseScore()
 	{
 		LeaderboardUI->UpdateScore(Score);
 	}
-	
 }
-void AFirebaseManager::SaveScore()
+
+void AFirebaseManager::SaveScore(const FString& PlayerID, int32 NewScore)
 {
 	FString Url = FirebaseURL + PlayerName + ".json";
 
 	//JSON body
-	 TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject());
-	 JsonObject->SetNumberField("score",Score);
+	TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject());
+	JsonObject->SetNumberField("score",Score);
 
 	FString RequestBody;
 	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&RequestBody);
@@ -108,9 +108,9 @@ void AFirebaseManager::SaveScore()
 	Request->OnProcessRequestComplete().BindUObject(this, &AFirebaseManager::OnSaveResponse);
 	Request->ProcessRequest();
 
-
-	
 }
+
+
 
 FString AFirebaseManager::GenerateRandomPlayerName()
 {

@@ -28,10 +28,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable, Category="Firebase")
-	void IncreaseScore();
+	void IncreaseScore(const FString& PlayerID, int32 Amount);
 	
 	UFUNCTION(BlueprintCallable, Category="Firebase")
-	void SaveScore();
+	void SaveScore(const FString& PlayerID, int32 NewScore);
 
 	UFUNCTION(BlueprintCallable, Category="Firebase")
 	void LoadLeaderboard();
